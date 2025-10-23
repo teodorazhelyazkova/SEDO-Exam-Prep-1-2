@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage("Restore the dependencies"){
             when{ 
-                branch pattern: "(develop|feature/.*)", comparator: "REGEXP"
+                branch pattern: "(main|feature/.*)", comparator: "REGEXP"
             }
             steps{
                 bat 'dotnet restore'
@@ -17,7 +17,7 @@ pipeline{
         }
         stage("Run the unit and integration tests"){
             when{ 
-                branch pattern: "(develop|feature/.*)", comparator: "REGEXP"
+                branch pattern: "(main|feature/.*)", comparator: "REGEXP"
             }
             steps{
                 bat 'dotnet test --no-build --verbosity normal'
